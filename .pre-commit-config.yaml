@@ -1,0 +1,67 @@
+default_language_version:
+  python: python3
+
+fail_fast: false
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trailing Whitespace
+      - id: end-of-file-fixer
+        name: End Of File Fixer
+      - id: check-merge-conflict
+        name: Check Merge Conflict
+      - id: detect-private-key
+        name: Detect Private Key
+      - id: mixed-line-ending
+        name: Mixed Line Ending
+      - id: detect-private-key
+        name: Detect Private Keys
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+      - id: isort
+        name: Isort
+
+  - repo: https://github.com/psf/black
+    rev: 22.1.0
+    hooks:
+      - id: black
+        name: Black
+
+  - repo: https://github.com/asottile/blacken-docs
+    rev: v1.12.1
+    hooks:
+      - id: blacken-docs
+        name: Blacken Docs
+        additional_dependencies: ["black==22.1.0"]
+
+  - repo: local
+    hooks:
+      - id: flake8
+        name: Flake8
+        entry: pflake8
+        language: python
+        types: [python]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.931
+    hooks:
+      - id: mypy
+        name: MyPy
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.31.0
+    hooks:
+      - id: pyupgrade
+        name: Pyupgrade
+        args: ["--py36-plus"]
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.8.0.3
+    hooks:
+      - id: shellcheck
+        name: Check shell scripts

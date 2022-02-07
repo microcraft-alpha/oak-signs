@@ -1,0 +1,49 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.5.0
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.2
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "poetry.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: poetry install
+
+      - save_cache:
+          key: deps-{{ checksum "poetry.lock" }}
+          paths:
+            - /home/circleci/.cache/pypoetry/virtualenvs
+
+      - run:
+          name: Checksum pre-commit
+          command: |
+            cp .pre-commit-config.yaml pre-commit-cache-key.txt
+            python --version --version >> pre-commit-cache-key.txt
+
+      - restore_cache:
+          keys:
+            - v1-pc-cache-{{ checksum "pre-commit-cache-key.txt" }}
+
+      - run:
+          name: Run pre-commit hooks
+          command: make lint
+
+      - save_cache:
+          key: v1-pc-cache-{{ checksum "pre-commit-cache-key.txt" }}
+          paths:
+            - ~/.cache/pre-commit
+
+workflows:
+  continuous_integration:
+    jobs:
+      - build-and-test

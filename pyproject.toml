@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "oak-signs"
+version = "0.1.0"
+description = "API for Minecraft notifications management"
+authors = ["Tobias <piotr.tobiasz.dev@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.73.0"
+uvicorn = {extras = ["standard"], version = "^0.17.4"}
+structlog = "^21.5.0"
+colorama = "^0.4.4"
+environs = "^9.5.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+pre-commit = "^2.17.0"
+wemake-python-styleguide = "^0.16.0"
+pyproject-flake8 = "^0.0.1-alpha.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+exclude = ".git,__pycache__,*/static/*,*/migrations/*,*/test_*/"
+max-line-length = 80
+inline-quotes = '"'
+ignore = "WPS115"
+per-file-ignores = """
+    */__init__.py:D104
+"""
