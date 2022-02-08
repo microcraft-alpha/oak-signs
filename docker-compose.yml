@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  fastapi:
+    container_name: oak-signs-api
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+      target: dev
+    env_file:
+      - ./docker/.env
+    volumes:
+      - .:/app
+    ports:
+      - 8004:8004
+    stdin_open: true
+    tty: true

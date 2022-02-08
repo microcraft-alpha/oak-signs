@@ -14,7 +14,5 @@ class Settings(BaseSettings):
     DESCRIPTION: str = "Management app for notifications around Minecraft APIs"
     DEBUG: bool = env.bool("DEBUG", default=False)
 
-    DATABASE_URL: str = env.str("DATABASE_URL")
-
 
 settings = Settings()
