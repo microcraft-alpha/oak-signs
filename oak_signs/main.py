@@ -4,9 +4,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from structlog import get_logger
 
+from oak_signs.api.router import graphql_router
 from oak_signs.settings import settings
 
-log = get_logger(__name__)
+logger = get_logger(__name__)
 
 
 def create_application() -> FastAPI:
@@ -15,7 +16,7 @@ def create_application() -> FastAPI:
     Returns:
         FastAPI: created app.
     """
-    log.info("Creating app...")
+    logger.info("Creating app...")
     app = FastAPI(
         title=settings.TITLE,
         version=settings.VERSION,
@@ -27,6 +28,7 @@ def create_application() -> FastAPI:
         allow_credentials=True,
         allow_methods=["*"],
     )
+    app.include_router(graphql_router, prefix="/graphql")
     return app
 
 
