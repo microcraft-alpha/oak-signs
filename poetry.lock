@@ -389,7 +389,7 @@ gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "graphql-core"
-version = "3.1.7"
+version = "3.2.0"
 description = "GraphQL implementation for Python, a port of GraphQL.js, the JavaScript reference implementation for GraphQL."
 category = "main"
 optional = false
@@ -782,7 +782,7 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.96.0"
+version = "0.99.2"
 description = "A library for creating GraphQL APIs"
 category = "main"
 optional = false
@@ -792,7 +792,7 @@ python-versions = ">=3.7,<4.0"
 "backports.cached-property" = ">=1.0.1,<2.0.0"
 click = ">=7.0,<9.0"
 fastapi = {version = ">=0.65.2", optional = true, markers = "extra == \"fastapi\""}
-graphql-core = ">=3.1.0,<3.2.0"
+graphql-core = ">=3.2.0,<3.3.0"
 pygments = ">=2.3,<3.0"
 python-dateutil = ">=2.7.0,<3.0.0"
 python-multipart = ">=0.0.5,<0.0.6"
@@ -963,7 +963,7 @@ typing_extensions = ">=3.6,<5.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "7e8880800a1ed0e9b416d6988d33e09691d486ed977ff9390bf86b43b1441d67"
+content-hash = "1a9c302cc15de27330d6e8e90e72eee20fb8247adc179f2dd1b6c327a5aa91c2"
 
 [metadata.files]
 anyio = [
@@ -1096,8 +1096,8 @@ gitpython = [
     {file = "GitPython-3.1.26.tar.gz", hash = "sha256:fc8868f63a2e6d268fb25f481995ba185a85a66fcad126f039323ff6635669ee"},
 ]
 graphql-core = [
-    {file = "graphql-core-3.1.7.tar.gz", hash = "sha256:62ec192150ccecd9a18cfb79e3e72eb7d1fd68fb594ef19c40099b6deec8ef0c"},
-    {file = "graphql_core-3.1.7-py3-none-any.whl", hash = "sha256:9b460f60320be01c7f3b1766cf3e406933003008055079b9d983b8f3988f4400"},
+    {file = "graphql-core-3.2.0.tar.gz", hash = "sha256:86e2a0be008bfde19ef78388de8a725a1d942a9190ca431c24a60837973803ce"},
+    {file = "graphql_core-3.2.0-py3-none-any.whl", hash = "sha256:0dda7e63676f119bb3d814621190fedad72fda07a8e9ab780bedd9f1957c6dc6"},
 ]
 h11 = [
     {file = "h11-0.13.0-py3-none-any.whl", hash = "sha256:8ddd78563b633ca55346c8cd41ec0af27d3c79931828beffb46ce70a379e7442"},
@@ -1328,8 +1328,8 @@ stevedore = [
     {file = "stevedore-3.5.0.tar.gz", hash = "sha256:f40253887d8712eaa2bb0ea3830374416736dc8ec0e22f5a65092c1174c44335"},
 ]
 strawberry-graphql = [
-    {file = "strawberry-graphql-0.96.0.tar.gz", hash = "sha256:f79be867239aa8fb343a2ae9c67f3a6e74f6d58899d9bbe57fe932246b8a63ed"},
-    {file = "strawberry_graphql-0.96.0-py3-none-any.whl", hash = "sha256:bdf102d4c45017d069ef65720e0e3268044f00e6e721f000e55317ba8619a670"},
+    {file = "strawberry-graphql-0.99.2.tar.gz", hash = "sha256:cbe67482525ce3ffb7850e7105b0f583486403e01eadfed3bf6355db163c331b"},
+    {file = "strawberry_graphql-0.99.2-py3-none-any.whl", hash = "sha256:2e47c9d7693622169cd4e9716016e18c145e7f62ce30578ad22de26a65f3416d"},
 ]
 structlog = [
     {file = "structlog-21.5.0-py3-none-any.whl", hash = "sha256:fd7922e195262b337da85c2a91c84be94ccab1f8fd1957bd6986f6904e3761c8"},
