@@ -8,6 +8,11 @@ install:
 lint:
 	poetry run pre-commit run --all-files
 
+.PHONY: test
+## Run tests with pytest
+test:
+	poetry run pytest
+
 .PHONY: build
 ## Build the image
 build:

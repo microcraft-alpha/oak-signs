@@ -12,6 +12,7 @@ structlog = "^21.5.0"
 colorama = "^0.4.4"
 environs = "^9.5.0"
 strawberry-graphql = { extras = ["fastapi"], version = "^0.96.0" }
+beanie = "^1.8.12"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0"
@@ -22,6 +23,15 @@ pyproject-flake8 = "^0.0.1-alpha.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 80
+
+[tool.isort]
+line_length = 80
+profile = "black"
+default_section = "THIRDPARTY"
+known_first_party = ["oak_signs"]
 
 [tool.flake8]
 exclude = ".git,__pycache__,*/static/*,*/migrations/*,*/test_*/"

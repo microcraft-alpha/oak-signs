@@ -15,3 +15,13 @@ services:
       - 8004:8004
     stdin_open: true
     tty: true
+
+  mongodb:
+    container_name: oak-signs-db
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: notifications
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+    ports:
+      - 27017:27017

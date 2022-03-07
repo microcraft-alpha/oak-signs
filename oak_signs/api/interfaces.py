@@ -8,7 +8,7 @@ import strawberry
 
 @strawberry.interface
 class Inteface:
-    """Generic interface."""
+    """Interface abstraction."""
 
     id: uuid.UUID
     created_at: datetime.datetime
