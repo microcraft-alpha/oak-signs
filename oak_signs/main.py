@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from structlog import get_logger
 
 from oak_signs.api.router import graphql_router
+from oak_signs.database.client import init_database
 from oak_signs.settings import settings
 
 logger = get_logger(__name__)
@@ -22,6 +23,7 @@ def create_application() -> FastAPI:
         version=settings.VERSION,
         description=settings.DESCRIPTION,
         docs_url="/api/docs",
+        on_startup=[init_database],
     )
     app.add_middleware(
         CORSMiddleware,
