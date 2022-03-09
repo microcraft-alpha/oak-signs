@@ -12,7 +12,7 @@ structlog = "^21.5.0"
 colorama = "^0.4.4"
 environs = "^9.5.0"
 strawberry-graphql = { extras = ["fastapi"], version = "^0.102.2" }
-beanie = "^1.8.12"
+beanie = "^1.10.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0"
