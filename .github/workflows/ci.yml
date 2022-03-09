@@ -9,17 +9,19 @@ on:
 
 jobs:
   ci:
-    name: Continuous Integration
+    name: Lint and Test
     runs-on: ubuntu-20.04
     env:
       DATABASE_URL: mongodb://mongo:mongo@localhost:27017/notifications?authSource=admin
     services:
-      postgres:
+      mongodb:
         image: mongo
         env:
           MONGO_INITDB_DATABASE: notifications
           MONGO_INITDB_ROOT_USERNAME: mongo
-          MONGO_INITDB_ROOT_PASSWORD: mongo
+          MONGO_INITDB_ROOT_PASSWORD: mong
+        ports:
+          - 27017:27017o
     steps:
       - uses: actions/checkout@v2
 

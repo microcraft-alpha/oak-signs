@@ -3,7 +3,7 @@
 import typing as T
 import uuid
 
-from oak_signs.domain import types
+from oak_signs.domain.repositories import types
 
 
 class Repository(
@@ -60,6 +60,19 @@ class Repository(
 
         Args:
             entry_id (UUID): entry ID.
+            data_object (types.UpdateSchema): input data object.
+        """
+        ...  # noqa: WPS428
+
+    async def update_many(
+        self,
+        entries_ids: list[uuid.UUID],
+        data_object: types.UpdateSchema,
+    ) -> list[types.OutSchema]:
+        """Update multiple entries.
+
+        Args:
+            entries_ids (list[UUID]): list of entry IDs.
             data_object (types.UpdateSchema): input data object.
         """
         ...  # noqa: WPS428
