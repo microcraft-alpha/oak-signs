@@ -21,7 +21,7 @@ jobs:
           MONGO_INITDB_ROOT_USERNAME: mongo
           MONGO_INITDB_ROOT_PASSWORD: mong
         ports:
-          - 27017:27017o
+          - 27017:27017
     steps:
       - uses: actions/checkout@v2
 
