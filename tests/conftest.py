@@ -3,11 +3,12 @@
 import typing as T
 
 import pytest_asyncio
-from httpx import AsyncClient
+import strawberry
 from motor import motor_asyncio
 
+from oak_signs.api import schema
 from oak_signs.database.client import init_database
-from oak_signs.main import app as base_app
+from oak_signs.main import app  # noqa: F401 # Import the created app anyway
 
 
 async def clear_database(client: motor_asyncio.AsyncIOMotorClient):
@@ -21,13 +22,12 @@ async def clear_database(client: motor_asyncio.AsyncIOMotorClient):
 
 
 @pytest_asyncio.fixture()
-async def async_client() -> T.AsyncGenerator:
-    """Create an instance of the HTTP client.
+async def async_schema() -> T.AsyncGenerator[strawberry.Schema, None]:
+    """Prepare the database, yield the schema and clean up afterwards.
 
     Yields:
-        AsyncClient: HTTP client.
+        Schema: GraphQL schema.
     """
-    async with AsyncClient(app=base_app, base_url="http://test") as client:
-        db_client = await init_database()
-        yield client
-        await clear_database(db_client)
+    db_client = await init_database()
+    yield schema.schema
+    await clear_database(db_client)

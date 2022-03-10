@@ -21,6 +21,8 @@ wemake-python-styleguide = "^0.16.0"
 pyproject-flake8 = "^0.0.1-alpha.2"
 pytest-asyncio = "^0.18.2"
 httpx = "^0.22.0"
+pytest-cov = "^3.0.0"
+coverage = "^6.3.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -47,4 +49,7 @@ per-file-ignores = """
 [tool.pytest.ini_options]
 testpaths = "tests"
 asyncio_mode = "strict"
-addopts = "--strict-markers -vv --cache-clear --maxfail=1"
+addopts = "--strict-markers -vv --cache-clear --maxfail=1 --cov=oak_signs --cov-report=term --cov-report=html --cov-branch --cov-fail-under=0 --no-cov-on-fail -p no:warnings"
+
+[tool.coverage.report]
+exclude_lines = ["# pragma: no cover", "...  # noqa: WPS428"]
