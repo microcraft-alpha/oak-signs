@@ -19,7 +19,7 @@ jobs:
         env:
           MONGO_INITDB_DATABASE: notifications
           MONGO_INITDB_ROOT_USERNAME: mongo
-          MONGO_INITDB_ROOT_PASSWORD: mong
+          MONGO_INITDB_ROOT_PASSWORD: mongo
         ports:
           - 27017:27017
     steps:
@@ -58,5 +58,5 @@ jobs:
       - name: Run pre-commit hooks
         run: make lint
 
-      # - name: Run tests with pytest
-      #   run: make test
+      - name: Run tests with pytest
+        run: make test
