@@ -55,7 +55,9 @@ class Interface:
 
     @strawberry.field
     def _id(self) -> uuid.UUID:
-        """Just a simple object identifier, to satisfy the interface API.
+        """Generate a random UUID.
+
+        Simple object identifier, just to satisfy the interface API.
 
         Returns:
             UUID: random UUID.

@@ -13,7 +13,7 @@ class NotificationsRepository(
         fields.NotificationOut,
     ],
 ):
-    """Notifications repository."""
+    """Notifications ODM repository."""
 
     table = models.Notification
     schema = fields.NotificationOut

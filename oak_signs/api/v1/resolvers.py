@@ -5,7 +5,7 @@ import uuid
 from oak_signs.api.v1 import fields
 from oak_signs.domain.notifications.registry import registry
 
-repository = registry.repository
+srv = registry.odm_service
 
 
 async def get_notifications() -> list[fields.NotificationOut]:
@@ -14,7 +14,7 @@ async def get_notifications() -> list[fields.NotificationOut]:
     Returns:
         list[Notification]: retrieved notifications.
     """
-    return await repository.collect()
+    return await srv.collect()
 
 
 async def mark_notifications_as_resolved(
@@ -28,7 +28,7 @@ async def mark_notifications_as_resolved(
     Returns:
         list[Notification]: updated notifications.
     """
-    return await repository.update_many(
+    return await srv.update_many(
         ids,
         fields.NotificationUpdate(resolved=True),
     )

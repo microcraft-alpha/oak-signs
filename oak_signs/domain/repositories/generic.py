@@ -1,4 +1,4 @@
-"""Storage abstractions."""
+"""Repository abstractions."""
 
 import typing as T
 import uuid
@@ -14,7 +14,10 @@ class Repository(
     ],
     T.Protocol,
 ):
-    """Storage interface."""
+    """Abstraction over the idea of persistent storage.
+
+    Interface class for all the concrete repository implementations.
+    """
 
     async def create(self, data_object: types.CreateSchema) -> types.OutSchema:
         """Create a new entry.
@@ -66,13 +69,13 @@ class Repository(
 
     async def update_many(
         self,
-        entries_ids: list[uuid.UUID],
+        entry_ids: list[uuid.UUID],
         data_object: types.UpdateSchema,
     ) -> list[types.OutSchema]:
         """Update multiple entries.
 
         Args:
-            entries_ids (list[UUID]): list of entry IDs.
+            entry_ids (list[UUID]): list of entry IDs.
             data_object (types.UpdateSchema): input data object.
         """
         ...  # noqa: WPS428

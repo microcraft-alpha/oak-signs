@@ -39,7 +39,7 @@ known_first_party = ["oak_signs"]
 exclude = ".git,__pycache__,*/static/*,*/migrations/*,*/test_*/"
 max-line-length = 80
 inline-quotes = '"'
-ignore = "WPS115,WPS306,WPS111,N812,WPS110"
+ignore = "WPS115,WPS306,WPS111,N812,WPS110,D107"
 per-file-ignores = """
     */__init__.py:D104
 """

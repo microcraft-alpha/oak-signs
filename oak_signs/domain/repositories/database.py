@@ -1,4 +1,4 @@
-"""Database storage classes."""
+"""Database repository classes."""
 
 import typing as T
 import uuid
@@ -34,7 +34,7 @@ class MongoRepository(
         types.OutSchema,
     ],
 ):
-    """Generic database storage for ORM models."""
+    """Generic database repository for ORM models."""
 
     table: type[Model]
     schema: type[types.OutSchema]
@@ -136,7 +136,7 @@ class MongoRepository(
 
     async def update_many(
         self,
-        entries_ids: list[uuid.UUID],
+        entry_ids: list[uuid.UUID],
         data_object: types.UpdateSchema,
     ) -> list[types.OutSchema]:
         """Update multiple entries.
@@ -144,7 +144,7 @@ class MongoRepository(
         Error is not raised even if all entries do not exist.
 
         Args:
-            entries_ids (list[UUID]): list of primary keys.
+            entry_ids (list[UUID]): list of primary keys.
             data_object (CreateSchema): input data object.
 
         Returns:
@@ -154,7 +154,7 @@ class MongoRepository(
             data_object.to_dict(exclude_unset=True),
             self.table,
         )
-        entries = self.table.find(operators.In(self.table.id, entries_ids))
+        entries = self.table.find(operators.In(self.table.id, entry_ids))
         await entries.update({"$set": query})
         return [
             self.schema.from_orm(entry) for entry in await entries.to_list()
