@@ -826,7 +826,7 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.102.2"
+version = "0.102.3"
 description = "A library for creating GraphQL APIs"
 category = "main"
 optional = false
@@ -1018,7 +1018,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6ae1f384fef5eea032299b2b2016fa111c2e359dd8321303981e445c02926221"
+content-hash = "73770a63a314717daf11235f9099c04cae55363199fdb8d398e8547de652ec65"
 
 [metadata.files]
 anyio = [
@@ -1557,8 +1557,8 @@ stevedore = [
     {file = "stevedore-3.5.0.tar.gz", hash = "sha256:f40253887d8712eaa2bb0ea3830374416736dc8ec0e22f5a65092c1174c44335"},
 ]
 strawberry-graphql = [
-    {file = "strawberry-graphql-0.102.2.tar.gz", hash = "sha256:f8134f481759e2a6a5fd76c58a6b597bef667302ed855a2836437efad36aae93"},
-    {file = "strawberry_graphql-0.102.2-py3-none-any.whl", hash = "sha256:e410fc048eb3be1b8d4d9a29cbfc823386ba84e126f85d7dee62be610b73abae"},
+    {file = "strawberry-graphql-0.102.3.tar.gz", hash = "sha256:7770e95f6b515ca3d6fad626e0c80b5fb55894485644979acc39cb06ddc450a7"},
+    {file = "strawberry_graphql-0.102.3-py3-none-any.whl", hash = "sha256:85ef258ed2322196892a5ea0c1cd98704d8969a2fe4c814e201c97cab36aa026"},
 ]
 structlog = [
     {file = "structlog-21.5.0-py3-none-any.whl", hash = "sha256:fd7922e195262b337da85c2a91c84be94ccab1f8fd1957bd6986f6904e3761c8"},
