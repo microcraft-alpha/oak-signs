@@ -7,18 +7,22 @@ authors = ["Tobias <piotr.tobiasz.dev@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = "^0.75.0"
-uvicorn = { extras = ["standard"], version = "^0.17.5" }
+uvicorn = { extras = ["standard"], version = "^0.17.6" }
 structlog = "^21.5.0"
 colorama = "^0.4.4"
 environs = "^9.5.0"
-strawberry-graphql = { extras = ["fastapi"], version = "^0.102.2" }
-beanie = "^1.10.0"
+beanie = "^1.10.1"
+strawberry-graphql = "^0.103.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.0"
+pytest = "^7.1"
 pre-commit = "^2.17.0"
 wemake-python-styleguide = "^0.16.1"
 pyproject-flake8 = "^0.0.1-alpha.2"
+pytest-asyncio = "^0.18.2"
+httpx = "^0.22.0"
+pytest-cov = "^3.0.0"
+coverage = "^6.3.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -37,7 +41,15 @@ known_first_party = ["oak_signs"]
 exclude = ".git,__pycache__,*/static/*,*/migrations/*,*/test_*/"
 max-line-length = 80
 inline-quotes = '"'
-ignore = "WPS115,WPS306,WPS111,N812"
+ignore = "WPS115,WPS306,WPS111,N812,WPS110,D107"
 per-file-ignores = """
     */__init__.py:D104
 """
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+asyncio_mode = "strict"
+addopts = "--strict-markers -vv --cache-clear --maxfail=1 --cov=oak_signs --cov-report=term --cov-report=html --cov-branch --cov-fail-under=100 --no-cov-on-fail -p no:warnings"
+
+[tool.coverage.report]
+exclude_lines = ["# pragma: no cover", "...  # noqa: WPS428"]

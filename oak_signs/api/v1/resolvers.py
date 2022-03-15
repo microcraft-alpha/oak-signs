@@ -3,20 +3,23 @@
 import uuid
 
 from oak_signs.api.v1 import fields
+from oak_signs.domain.notifications.registry import notifications_registry
+
+srv = notifications_registry.service
 
 
-async def get_notifications() -> list[fields.Notification]:
+async def get_notifications() -> list[fields.NotificationOut]:
     """Fetch all the notifications.
 
     Returns:
         list[Notification]: retrieved notifications.
     """
-    return []
+    return await srv.collect()
 
 
 async def mark_notifications_as_resolved(
     ids: list[uuid.UUID],
-) -> list[fields.Notification]:
+) -> list[fields.NotificationOut]:
     """Fetch notifications by the IDs and mark them as resolved.
 
     Args:
@@ -25,4 +28,7 @@ async def mark_notifications_as_resolved(
     Returns:
         list[Notification]: updated notifications.
     """
-    return []
+    return await srv.update_many(
+        ids,
+        fields.NotificationUpdate(resolved=True),
+    )

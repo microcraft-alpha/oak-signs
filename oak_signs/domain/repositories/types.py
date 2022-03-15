@@ -2,18 +2,18 @@
 
 import typing as T
 
-from oak_signs.api import interfaces
+from oak_signs.api import fields
 
 CreateSchema = T.TypeVar(
     "CreateSchema",
-    bound=interfaces.Inteface,
+    bound=fields.Interface,
     contravariant=True,
 )
 
 UpdateSchema = T.TypeVar(
     "UpdateSchema",
-    bound=interfaces.Inteface,
+    bound=fields.Interface,
     contravariant=True,
 )
 
-OutSchema = T.TypeVar("OutSchema", bound=interfaces.Inteface)
+OutSchema = T.TypeVar("OutSchema", bound=fields.Interface)

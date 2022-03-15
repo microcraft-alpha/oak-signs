@@ -9,7 +9,7 @@ from oak_signs.api.v1 import fields, resolvers
 class Query:
     """GraphQL query."""
 
-    notifications: list[fields.Notification] = strawberry.field(
+    notifications: list[fields.NotificationOut] = strawberry.field(
         resolver=resolvers.get_notifications,
     )
 
@@ -18,8 +18,10 @@ class Query:
 class Mutation:
     """GraphQL mutation."""
 
-    mark_notifications_as_resolved: fields.Notification = strawberry.mutation(
-        resolver=resolvers.mark_notifications_as_resolved,
+    mark_notifications_as_resolved: fields.NotificationOut = (
+        strawberry.mutation(
+            resolver=resolvers.mark_notifications_as_resolved,
+        )
     )
 
 

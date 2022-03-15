@@ -1,9 +1,9 @@
-"""Storage abstractions."""
+"""Repository abstractions."""
 
 import typing as T
 import uuid
 
-from oak_signs.domain import types
+from oak_signs.domain.repositories import types
 
 
 class Repository(
@@ -14,7 +14,10 @@ class Repository(
     ],
     T.Protocol,
 ):
-    """Storage interface."""
+    """Abstraction over the idea of persistent storage.
+
+    Interface class for all the concrete repository implementations.
+    """
 
     async def create(self, data_object: types.CreateSchema) -> types.OutSchema:
         """Create a new entry.
@@ -60,6 +63,19 @@ class Repository(
 
         Args:
             entry_id (UUID): entry ID.
+            data_object (types.UpdateSchema): input data object.
+        """
+        ...  # noqa: WPS428
+
+    async def update_many(
+        self,
+        entry_ids: list[uuid.UUID],
+        data_object: types.UpdateSchema,
+    ) -> list[types.OutSchema]:
+        """Update multiple entries.
+
+        Args:
+            entry_ids (list[UUID]): list of entry IDs.
             data_object (types.UpdateSchema): input data object.
         """
         ...  # noqa: WPS428
