@@ -49,7 +49,7 @@ per-file-ignores = """
 [tool.pytest.ini_options]
 testpaths = "tests"
 asyncio_mode = "strict"
-addopts = "--strict-markers -vv --cache-clear --maxfail=1 --cov=oak_signs --cov-report=term --cov-report=html --cov-branch --cov-fail-under=0 --no-cov-on-fail -p no:warnings"
+addopts = "--strict-markers -vv --cache-clear --maxfail=1 --cov=oak_signs --cov-report=term --cov-report=html --cov-branch --cov-fail-under=100 --no-cov-on-fail -p no:warnings"
 
 [tool.coverage.report]
 exclude_lines = ["# pragma: no cover", "...  # noqa: WPS428"]

@@ -36,6 +36,20 @@ class NotificationService:
         logger.info("Created notification", entry=notification)
         return notification
 
+    async def get_by_id(self, pk: uuid.UUID) -> fields.NotificationOut:
+        """Get a notification by its ID.
+
+        Args:
+            pk (UUID): notification ID.
+
+        Returns:
+            NotificationOut: representation of the notification.
+        """
+        logger.info("Getting notification", id=pk)
+        notification = await self.repository.get_by_id(pk)
+        logger.info("Got notification by ID", entry=notification)
+        return notification
+
     async def collect(self) -> list[fields.NotificationOut]:
         """Collect all notifications.
 
@@ -46,6 +60,35 @@ class NotificationService:
         notifications = await self.repository.collect()
         logger.info("Collected notifications", qty=len(notifications))
         return notifications
+
+    async def delete(self, pk: uuid.UUID) -> None:
+        """Delete a notification.
+
+        Args:
+            pk (UUID): notification ID.
+        """
+        logger.info("Deleting notification", id=pk)
+        await self.repository.delete(pk)
+        logger.info("Deleted notification", id=pk)
+
+    async def update(
+        self,
+        pk: uuid.UUID,
+        data_object: fields.NotificationUpdate,
+    ) -> fields.NotificationOut:
+        """Update a notification.
+
+        Args:
+            pk (UUID): notification ID.
+            data_object (NotificationUpdate): input data.
+
+        Returns:
+            NotificationOut: updated notification.
+        """
+        logger.info("Updating notification", id=pk, data=data_object)
+        notification = await self.repository.update(pk, data_object)
+        logger.info("Updated notification", entry=notification)
+        return notification
 
     async def update_many(
         self,

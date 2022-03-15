@@ -5,7 +5,7 @@ from oak_signs.database import models
 from oak_signs.domain.repositories import database
 
 
-class NotificationsRepository(
+class NotificationsOdmRepository(
     database.MongoRepository[
         models.Notification,
         fields.NotificationCreate,

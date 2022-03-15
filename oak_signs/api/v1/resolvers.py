@@ -3,9 +3,9 @@
 import uuid
 
 from oak_signs.api.v1 import fields
-from oak_signs.domain.notifications.registry import registry
+from oak_signs.domain.notifications.registry import notifications_registry
 
-srv = registry.odm_service
+srv = notifications_registry.service
 
 
 async def get_notifications() -> list[fields.NotificationOut]:

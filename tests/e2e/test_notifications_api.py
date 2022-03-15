@@ -1,12 +1,12 @@
 """E2E tests for the notifications API."""
 
 import pytest
-import strawberry
 
+from oak_signs.api.schema import schema
 from oak_signs.api.v1 import fields
-from oak_signs.domain.notifications.registry import registry
+from oak_signs.domain.notifications.registry import notifications_registry
 
-pytestmark = pytest.mark.asyncio
+pytestmark = [pytest.mark.asyncio, pytest.mark.usefixtures("with_database")]
 
 
 async def create_x_notifications(n: int) -> list[str]:
@@ -21,7 +21,7 @@ async def create_x_notifications(n: int) -> list[str]:
     return [
         str(
             (
-                await registry.odm_service.create(
+                await notifications_registry.service.create(
                     fields.NotificationCreate(
                         type=f"Type {i}",
                         message=f"Mess {i}",
@@ -34,7 +34,7 @@ async def create_x_notifications(n: int) -> list[str]:
     ]
 
 
-async def test_get_notifications(async_schema: strawberry.Schema):
+async def test_get_notifications():
     """Check that the notifications are returned in the response."""
     # Create 3 notifications.
     await create_x_notifications(3)
@@ -47,14 +47,14 @@ async def test_get_notifications(async_schema: strawberry.Schema):
         }
     """
 
-    response = await async_schema.execute(query)
+    response = await schema.execute(query)
 
     assert response.errors is None
     assert response.data is not None
     assert len(response.data["notifications"]) == 3
 
 
-async def test_mark_notifications_as_resolved(async_schema: strawberry.Schema):
+async def test_mark_notifications_as_resolved():
     """Check that the notifications are marked as resolved."""
     # Create 3 notifications.
     ids = await create_x_notifications(3)
@@ -67,9 +67,7 @@ async def test_mark_notifications_as_resolved(async_schema: strawberry.Schema):
         }
     """
 
-    response = await async_schema.execute(
-        mutation, variable_values={"ids": ids}
-    )
+    response = await schema.execute(mutation, variable_values={"ids": ids})
 
     # Check that the notifications are marked as resolved in the response.
     assert response.errors is None
@@ -78,6 +76,6 @@ async def test_mark_notifications_as_resolved(async_schema: strawberry.Schema):
         assert notification["resolved"] is True
 
     # Check that the notifications are marked as resolved in the database.
-    notifications = await registry.odm_service.collect()
+    notifications = await notifications_registry.service.collect()
     for notification in notifications:
         assert notification.resolved is True
