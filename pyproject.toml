@@ -13,6 +13,7 @@ colorama = "^0.4.4"
 environs = "^9.5.0"
 beanie = "^1.10.1"
 strawberry-graphql = "^0.103.0"
+redis = "^4.1.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1"
@@ -44,6 +45,7 @@ inline-quotes = '"'
 ignore = "WPS115,WPS306,WPS111,N812,WPS110,D107"
 per-file-ignores = """
     */__init__.py:D104
+    oak_signs/__init__.py:WPS412
 """
 
 [tool.pytest.ini_options]
