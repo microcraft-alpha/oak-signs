@@ -21,7 +21,7 @@ class EventBus:
     events: dict[str, type["Event"]] = {}
 
     @classmethod
-    def dispatch(cls, event_type: bytes, event_data: bytes) -> None:
+    async def dispatch(cls, event_type: bytes, event_data: bytes) -> None:
         """Dispatch an event to the appropriate handler.
 
         Args:
@@ -42,30 +42,28 @@ class EventBus:
             )
             return
         data = json.loads(event_data.decode())
-        event(**data).handle()
+        await event(**data).handle()
 
     @classmethod
-    def publish(cls, event_type: "EventType", event_data: "Event") -> None:
+    async def publish(cls, event: "Event") -> None:
         """Publish an event to redis.
 
         Args:
-            event_type (EventType): event type, which is the channel name.
-            event_data (Event): event data.
+            event (Event): event object.
         """
         logger.info(
             "Publishing event",
-            event_type=event_type,
-            event_data=event_data,
+            event_object=event,
         )
-        event = cls.events.get(event_type)
-        if not event:
+        if not cls.events.get(event.event_type.value):
             logger.warning(
                 "No event registered to publish",
-                event_type=event_type,
+                event_object=event,
                 events=cls.events,
             )
             return
-        publish_with_redis(event_type, event_data)
+        await event.handle()
+        publish_with_redis(event)
 
 
 def eventclass(event_type: "EventType") -> Callable:
@@ -91,6 +89,7 @@ def eventclass(event_type: "EventType") -> Callable:
             type: the dataclass.
         """
         EventBus.events[event_type.value] = cls
+        cls.event_type = event_type
         return dataclass(cls)
 
     return wrapper

@@ -42,7 +42,7 @@ known_first_party = ["oak_signs"]
 exclude = ".git,__pycache__,*/static/*,*/migrations/*,*/test_*/"
 max-line-length = 80
 inline-quotes = '"'
-ignore = "WPS115,WPS306,WPS111,N812,WPS110,D107"
+ignore = "WPS115,WPS306,WPS111,N812,WPS110,D107,WPS305"
 per-file-ignores = """
     */__init__.py:D104
     oak_signs/__init__.py:WPS412
@@ -54,4 +54,9 @@ asyncio_mode = "strict"
 addopts = "--strict-markers -vv --cache-clear --maxfail=1 --cov=oak_signs --cov-report=term --cov-report=html --cov-branch --cov-fail-under=100 --no-cov-on-fail -p no:warnings"
 
 [tool.coverage.report]
-exclude_lines = ["# pragma: no cover", "...  # noqa: WPS428"]
+exclude_lines = [
+  "# pragma: no cover",
+  "...  # noqa: WPS428",
+  "if TYPE_CHECKING:",
+  'if __name__ == "__main__":',
+]

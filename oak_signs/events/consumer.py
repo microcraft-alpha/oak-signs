@@ -7,7 +7,7 @@ from structlog import get_logger
 
 from oak_signs.database.client import init_database
 from oak_signs.events.bus import EventBus
-from oak_signs.events.event_types import EventType
+from oak_signs.events.event_types import IncomingEventType
 from oak_signs.settings import settings
 
 logger = get_logger(__name__)
@@ -30,12 +30,12 @@ async def listen(pubsub: redis.client.PubSub) -> None:
     Args:
         pubsub (PubSub): a publish-subscribe object.
     """
-    channels = [event_type.value for event_type in EventType]
+    channels = [event_type.value for event_type in IncomingEventType]
     logger.info("Starting to listen", channels=channels)
     pubsub.subscribe(*channels)
     for message in pubsub.listen():
         if message["type"] == "message":
-            EventBus.dispatch(message["channel"], message["data"])
+            await EventBus.dispatch(message["channel"], message["data"])
         else:
             logger.warning("Non-message event received", message=message)
 
@@ -48,6 +48,7 @@ async def main() -> None:
     await listen(pubsub)
 
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
-loop.close()
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop_policy().new_event_loop()
+    loop.run_until_complete(main())
+    loop.close()

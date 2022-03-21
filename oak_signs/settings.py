@@ -19,8 +19,8 @@ class Settings(BaseSettings):
     DATABASE_URL: str = env.str("DATABASE_URL")
 
     # Redis
-    REDIS_HOST: str = env.str("REDIS_HOST", default="redis")
-    REDIS_PORT: int = env.int("REDIS_PORT", default=6379)  # noqa: WPS432
+    REDIS_HOST: str = env.str("REDIS_HOST")
+    REDIS_PORT: int = env.int("REDIS_PORT")
 
 
 settings = Settings()
