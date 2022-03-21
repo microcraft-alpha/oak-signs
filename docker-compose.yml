@@ -31,10 +31,10 @@ services:
 
   redis:
     container_name: oak-signs-redis
-    image: "redis:alpine"
+    image: redis:alpine
     command: redis-server
     ports:
-      - "6379:6379"
+      - 6379:6379
     volumes:
       - $PWD/redis-data:/var/lib/redis
       - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
