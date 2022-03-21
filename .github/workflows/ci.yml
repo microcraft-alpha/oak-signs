@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       DATABASE_URL: mongodb://mongo:mongo@localhost:27017/notifications?authSource=admin
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     services:
       mongodb:
         image: mongo
@@ -22,6 +24,10 @@ jobs:
           MONGO_INITDB_ROOT_PASSWORD: mongo
         ports:
           - 27017:27017
+      redis:
+        image: "redis:alpine"
+        ports:
+          - "6379:6379"
     steps:
       - uses: actions/checkout@v2
 
