@@ -5,7 +5,9 @@ import uuid
 from structlog import get_logger
 
 from oak_signs.api.v1 import fields
+from oak_signs.domain.events.outgoing import NotificationCreated
 from oak_signs.domain.repositories import generic
+from oak_signs.events.bus import EventBus
 
 logger = get_logger(__name__)
 
@@ -33,6 +35,7 @@ class NotificationService:
         """
         logger.info("Creating notification", data=data_object)
         notification = await self.repository.create(data_object)
+        await EventBus.publish(NotificationCreated(**notification.to_dict()))
         logger.info("Created notification", entry=notification)
         return notification
 

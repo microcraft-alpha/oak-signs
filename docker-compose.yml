@@ -1,20 +1,23 @@
 version: "3.8"
 
+x-default-app: &default-app
+  build:
+    context: .
+    dockerfile: ./docker/Dockerfile
+    target: dev
+  env_file:
+    - ./docker/.env
+  volumes:
+    - .:/app
+  stdin_open: true
+  tty: true
+
 services:
   fastapi:
+    <<: *default-app
     container_name: oak-signs-api
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile
-      target: dev
-    env_file:
-      - ./docker/.env
-    volumes:
-      - .:/app
     ports:
       - 8004:8004
-    stdin_open: true
-    tty: true
 
   mongodb:
     container_name: oak-signs-db
@@ -25,3 +28,20 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: mongo
     ports:
       - 27017:27017
+
+  redis:
+    container_name: oak-signs-redis
+    image: redis:alpine
+    command: redis-server
+    ports:
+      - 6379:6379
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+  redis-consumer:
+    <<: *default-app
+    container_name: oak-signs-redis-consumer
+    command: python oak_signs/events/consumer.py

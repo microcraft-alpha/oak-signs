@@ -38,7 +38,7 @@ RUN poetry install
 
 COPY . .
 
-ENTRYPOINT ["bash", "docker/run.sh"]
+CMD ["bash", "docker/run.sh"]
 
 # Production environment
 FROM base as prod
@@ -54,4 +54,4 @@ RUN poetry install --no-dev
 
 COPY --chown=microcraft:microcraft . .
 
-ENTRYPOINT ["bash", "docker/run.sh"]
+CMD ["bash", "docker/run.sh"]
