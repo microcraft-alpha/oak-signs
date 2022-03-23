@@ -113,3 +113,21 @@ async def test_dispatching_not_registered_event():
     await EventBus.dispatch(bytes(mocked_enum.value, encoding="utf-8"), bytes())
 
     mocked_handle.assert_not_called()
+
+
+@mock.patch.object(
+    redis.Redis, "publish", side_effect=redis.exceptions.ConnectionError
+)
+async def test_publishing_event_redis_error(mock_publish: mock.Mock):
+    """Check that everything is fine if redis is down."""
+    event_type = "minecraft-is-boring"
+    mocked_enum = mock.MagicMock(value=event_type)
+
+    @eventclass(mocked_enum)
+    class MinecraftIsBoring(Event):
+        async def handle(self) -> None:
+            ...
+
+    event = MinecraftIsBoring()
+    # If exception is not raised, test will not fail
+    await EventBus.publish(event)
