@@ -1,7 +1,7 @@
 """Event bus."""
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 from typing import TYPE_CHECKING, Callable
 
 from structlog import get_logger
@@ -13,6 +13,23 @@ if TYPE_CHECKING:
     from oak_signs.events.event_types import EventType
 
 logger = get_logger(__name__)
+
+
+def clean_event_data(event_data: bytes, event: type["Event"]) -> dict:
+    """Parse bytes data to json and remove fields not included in the dataclass.
+
+    Args:
+        event_data (bytes): event data.
+        event (type[Event]): event class.
+
+    Returns:
+        dict: cleaned event data.
+    """
+    # Parse bytes data to json
+    data = json.loads(event_data.decode())
+    # Clean extra fields - take only those required in dataclass
+    event_fields = [field.name for field in fields(event)]
+    return {key: value for key, value in data.items() if key in event_fields}
 
 
 class EventBus:
@@ -41,8 +58,8 @@ class EventBus:
                 events=cls.events,
             )
             return
-        data = json.loads(event_data.decode())
-        await event(**data).handle()
+        clean_data = clean_event_data(event_data, event)
+        await event(**clean_data).handle()
 
     @classmethod
     async def publish(cls, event: "Event") -> None:
