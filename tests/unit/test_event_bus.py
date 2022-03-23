@@ -1,4 +1,5 @@
 import json
+from dataclasses import asdict
 from unittest import mock
 
 import pytest
@@ -57,7 +58,7 @@ async def test_publishing_event(mock_publish: mock.Mock):
 
     mock_publish.assert_called_once_with(
         event_type,
-        json.dumps(event, default=str),
+        json.dumps(asdict(event), default=str),
     )
 
 
