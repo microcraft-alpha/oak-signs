@@ -11,7 +11,7 @@ from oak_signs.events.event_types import OutgoingEventType
 # TODO: Adding common interface for all object makes some sence.
 @eventclass(OutgoingEventType.NOTIFICATION_CREATED)
 class NotificationCreated(Event):
-    """Event handler for monster creation."""
+    """Event handler for notification creation."""
 
     id: uuid.UUID
     created_at: datetime.datetime

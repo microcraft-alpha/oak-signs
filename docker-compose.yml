@@ -45,3 +45,4 @@ services:
     <<: *default-app
     container_name: oak-signs-redis-consumer
     command: python oak_signs/events/consumer.py
+    restart: on-failure:5
