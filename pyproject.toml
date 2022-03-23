@@ -13,7 +13,7 @@ colorama = "^0.4.4"
 environs = "^9.5.0"
 beanie = "^1.10.1"
 strawberry-graphql = "^0.103.8"
-redis = "^4.1.4"
+redis = "^4.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"
