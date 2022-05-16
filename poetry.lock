@@ -975,7 +975,7 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.103.8"
+version = "0.112.0"
 description = "A library for creating GraphQL APIs"
 category = "main"
 optional = false
@@ -993,7 +993,7 @@ typing_extensions = ">=3.7.4,<5.0.0"
 [package.extras]
 asgi = ["starlette (>=0.13.6,<0.17.0)"]
 debug-server = ["starlette (>=0.13.6,<0.17.0)", "uvicorn (>=0.11.6,<0.18.0)"]
-django = ["Django (>=2.2)", "asgiref (>=3.2,<4.0)"]
+django = ["Django (>=3.2)", "asgiref (>=3.2,<4.0)"]
 flask = ["flask (>=1.1)"]
 opentelemetry = ["opentelemetry-api (<2)", "opentelemetry-sdk (<2)"]
 chalice = ["chalice (>=1.22,<2.0)"]
@@ -1177,7 +1177,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "d8f72c2421706ca93ad23df3aad6a189cc5f680f7ce40ae2a47d317851795e17"
+content-hash = "6eabd54569b08040afc05e2271b02853efe639c72d6b462576579dd4c956fbc7"
 
 [metadata.files]
 anyio = [
@@ -1806,8 +1806,8 @@ stevedore = [
     {file = "stevedore-3.5.0.tar.gz", hash = "sha256:f40253887d8712eaa2bb0ea3830374416736dc8ec0e22f5a65092c1174c44335"},
 ]
 strawberry-graphql = [
-    {file = "strawberry-graphql-0.103.8.tar.gz", hash = "sha256:fadea95911c7853ae8ee06062f39e860a7aa0ca6296a81a679a5355cec6e85df"},
-    {file = "strawberry_graphql-0.103.8-py3-none-any.whl", hash = "sha256:2136bfbef5f215afb81b87e2f87d18dbdc2e2996829de76b60a868601f2ade09"},
+    {file = "strawberry-graphql-0.112.0.tar.gz", hash = "sha256:9503c67a4b4e8d0dece5b82f609407090b9f4a7ead3044a7faeee620e2dc8582"},
+    {file = "strawberry_graphql-0.112.0-py3-none-any.whl", hash = "sha256:51d241f5f10bd34e84e20a899ddc21bfe5592a95aff8d38aa2b4a4f0100aad7e"},
 ]
 structlog = [
     {file = "structlog-21.5.0-py3-none-any.whl", hash = "sha256:fd7922e195262b337da85c2a91c84be94ccab1f8fd1957bd6986f6904e3761c8"},
