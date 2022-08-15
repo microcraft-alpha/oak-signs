@@ -24,7 +24,7 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
+tests = ["mypy (>=0.800)", "pytest-asyncio", "pytest"]
 
 [[package]]
 name = "astor"
@@ -178,7 +178,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 wrapt = ">=1.10,<2"
 
 [package.extras]
-dev = ["tox", "bump2version (<1)", "sphinx (<2)", "importlib-metadata (<3)", "importlib-resources (<4)", "configparser (<5)", "sphinxcontrib-websupport (<2)", "zipp (<2)", "PyTest (<5)", "PyTest-Cov (<2.6)", "pytest", "pytest-cov"]
+dev = ["pytest-cov", "pytest", "PyTest-Cov (<2.6)", "PyTest (<5)", "zipp (<2)", "sphinxcontrib-websupport (<2)", "configparser (<5)", "importlib-resources (<4)", "importlib-metadata (<3)", "sphinx (<2)", "bump2version (<1)", "tox"]
 
 [[package]]
 name = "distlib"
@@ -209,10 +209,10 @@ marshmallow = ">=3.0.0"
 python-dotenv = "*"
 
 [package.extras]
-dev = ["pytest", "dj-database-url", "dj-email-url", "django-cache-url", "flake8 (==4.0.1)", "flake8-bugbear (==21.9.2)", "mypy (==0.910)", "pre-commit (>=2.4,<3.0)", "tox"]
-django = ["dj-database-url", "dj-email-url", "django-cache-url"]
-lint = ["flake8 (==4.0.1)", "flake8-bugbear (==21.9.2)", "mypy (==0.910)", "pre-commit (>=2.4,<3.0)"]
-tests = ["pytest", "dj-database-url", "dj-email-url", "django-cache-url"]
+tests = ["django-cache-url", "dj-email-url", "dj-database-url", "pytest"]
+lint = ["pre-commit (>=2.4,<3.0)", "mypy (==0.910)", "flake8-bugbear (==21.9.2)", "flake8 (==4.0.1)"]
+django = ["django-cache-url", "dj-email-url", "dj-database-url"]
+dev = ["tox", "pre-commit (>=2.4,<3.0)", "mypy (==0.910)", "flake8-bugbear (==21.9.2)", "flake8 (==4.0.1)", "django-cache-url", "dj-email-url", "dj-database-url", "pytest"]
 
 [[package]]
 name = "eradicate"
@@ -249,8 +249,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["furo (>=2021.8.17b43)", "sphinx (>=4.1)", "sphinx-autodoc-typehints (>=1.12)"]
-testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-cov", "pytest-timeout (>=1.4.2)"]
+testing = ["pytest-timeout (>=1.4.2)", "pytest-cov", "pytest (>=4)", "coverage (>=4)", "covdefaults (>=1.2.0)"]
+docs = ["sphinx-autodoc-typehints (>=1.12)", "sphinx (>=4.1)", "furo (>=2021.8.17b43)"]
 
 [[package]]
 name = "flake8"
@@ -303,7 +303,7 @@ attrs = ">=19.2.0"
 flake8 = ">=3.0.0"
 
 [package.extras]
-dev = ["coverage", "hypothesis", "hypothesmith (>=0.2)", "pre-commit"]
+dev = ["pre-commit", "hypothesmith (>=0.2)", "hypothesis", "coverage"]
 
 [[package]]
 name = "flake8-commas"
@@ -480,8 +480,8 @@ h11 = ">=0.11,<0.13"
 sniffio = ">=1.0.0,<2.0.0"
 
 [package.extras]
-http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (>=1.0.0,<2.0.0)"]
+http2 = ["h2 (>=3,<5)"]
 
 [[package]]
 name = "httptools"
@@ -510,10 +510,10 @@ rfc3986 = {version = ">=1.3,<2", extras = ["idna2008"]}
 sniffio = "*"
 
 [package.extras]
-brotli = ["brotlicffi", "brotli"]
-cli = ["click (>=8.0.0,<9.0.0)", "rich (>=10.0.0,<11.0.0)", "pygments (>=2.0.0,<3.0.0)"]
-http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (>=1.0.0,<2.0.0)"]
+http2 = ["h2 (>=3,<5)"]
+cli = ["pygments (>=2.0.0,<3.0.0)", "rich (>=10.0.0,<11.0.0)", "click (>=8.0.0,<9.0.0)"]
+brotli = ["brotli", "brotlicffi"]
 
 [[package]]
 name = "identify"
@@ -551,10 +551,10 @@ optional = false
 python-versions = ">=3.6.1,<4.0"
 
 [package.extras]
-pipfile_deprecated_finder = ["pipreqs", "requirementslib"]
-requirements_deprecated_finder = ["pipreqs", "pip-api"]
-colors = ["colorama (>=0.4.3,<0.5.0)"]
 plugins = ["setuptools"]
+colors = ["colorama (>=0.4.3,<0.5.0)"]
+requirements_deprecated_finder = ["pip-api", "pipreqs"]
+pipfile_deprecated_finder = ["requirementslib", "pipreqs"]
 
 [[package]]
 name = "marshmallow"
@@ -663,8 +663,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "pre-commit"
@@ -710,8 +710,8 @@ python-versions = ">=3.6.1"
 typing-extensions = ">=3.7.4.3"
 
 [package.extras]
-dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
+dotenv = ["python-dotenv (>=0.10.4)"]
 
 [[package]]
 name = "pydocstyle"
@@ -752,14 +752,14 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-aws = ["pymongo-auth-aws (<2.0.0)"]
-encryption = ["pymongocrypt (>=1.1.0,<2.0.0)"]
-gssapi = ["pykerberos"]
-ocsp = ["pyopenssl (>=17.2.0)", "requests (<3.0.0)", "service-identity (>=18.1.0)", "certifi"]
-snappy = ["python-snappy"]
-srv = ["dnspython (>=1.16.0,<1.17.0)"]
-tls = ["ipaddress"]
 zstd = ["zstandard"]
+tls = ["ipaddress"]
+srv = ["dnspython (>=1.16.0,<1.17.0)"]
+snappy = ["python-snappy"]
+ocsp = ["certifi", "service-identity (>=18.1.0)", "requests (<3.0.0)", "pyopenssl (>=17.2.0)"]
+gssapi = ["pykerberos"]
+encryption = ["pymongocrypt (>=1.1.0,<2.0.0)"]
+aws = ["pymongo-auth-aws (<2.0.0)"]
 
 [[package]]
 name = "pyparsing"
@@ -803,7 +803,7 @@ py = ">=1.8.2"
 tomli = ">=1.0.0"
 
 [package.extras]
-testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
+testing = ["xmlschema", "requests", "pygments (>=2.7.2)", "nose", "mock", "hypothesis (>=3.56)", "argcomplete"]
 
 [[package]]
 name = "pytest-asyncio"
@@ -817,7 +817,7 @@ python-versions = ">=3.7"
 pytest = ">=6.1.0"
 
 [package.extras]
-testing = ["coverage (==6.2)", "hypothesis (>=5.7.1)", "flaky (>=3.5.0)", "mypy (==0.931)"]
+testing = ["mypy (==0.931)", "flaky (>=3.5.0)", "hypothesis (>=5.7.1)", "coverage (==6.2)"]
 
 [[package]]
 name = "pytest-cov"
@@ -832,7 +832,7 @@ coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
 name = "python-dateutil"
@@ -888,8 +888,8 @@ deprecated = ">=1.2.3"
 packaging = ">=20.4"
 
 [package.extras]
+ocsp = ["requests (>=2.26.0)", "pyopenssl (==20.0.1)", "cryptography (>=36.0.1)"]
 hiredis = ["hiredis (>=1.0.0)"]
-ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==20.0.1)", "requests (>=2.26.0)"]
 
 [[package]]
 name = "restructuredtext-lint"
@@ -975,7 +975,7 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.103.8"
+version = "0.125.0"
 description = "A library for creating GraphQL APIs"
 category = "main"
 optional = false
@@ -991,16 +991,17 @@ python-multipart = ">=0.0.5,<0.0.6"
 typing_extensions = ">=3.7.4,<5.0.0"
 
 [package.extras]
-asgi = ["starlette (>=0.13.6,<0.17.0)"]
-debug-server = ["starlette (>=0.13.6,<0.17.0)", "uvicorn (>=0.11.6,<0.18.0)"]
-django = ["Django (>=2.2)", "asgiref (>=3.2,<4.0)"]
-flask = ["flask (>=1.1)"]
-opentelemetry = ["opentelemetry-api (<2)", "opentelemetry-sdk (<2)"]
-chalice = ["chalice (>=1.22,<2.0)"]
-pydantic = ["pydantic (<2)"]
-sanic = ["sanic (>=20.12.2,<22.0.0)"]
-aiohttp = ["aiohttp (>=3.7.4.post0,<4.0.0)"]
+channels = ["channels (>=3.0.5)", "asgiref (>=3.2,<4.0)"]
 fastapi = ["fastapi (>=0.65.2)"]
+aiohttp = ["aiohttp (>=3.7.4.post0,<4.0.0)"]
+sanic = ["sanic (>=20.12.2,<22.0.0)"]
+pydantic = ["pydantic (<2)"]
+chalice = ["chalice (>=1.22,<2.0)"]
+opentelemetry = ["opentelemetry-sdk (<2)", "opentelemetry-api (<2)"]
+flask = ["flask (>=1.1)"]
+django = ["asgiref (>=3.2,<4.0)", "Django (>=3.2)"]
+debug-server = ["uvicorn (>=0.11.6,<0.19.0)", "starlette (>=0.13.6)"]
+asgi = ["starlette (>=0.13.6)"]
 
 [[package]]
 name = "structlog"
@@ -1011,9 +1012,9 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-dev = ["pre-commit", "rich", "cogapp", "tomli", "coverage", "freezegun (>=0.2.8)", "pretend", "pytest-asyncio", "pytest (>=6.0)", "simplejson", "furo", "sphinx", "sphinx-notfound-page", "sphinxcontrib-mermaid", "twisted"]
-docs = ["furo", "sphinx", "sphinx-notfound-page", "sphinxcontrib-mermaid", "twisted"]
-tests = ["coverage", "freezegun (>=0.2.8)", "pretend", "pytest-asyncio", "pytest (>=6.0)", "simplejson"]
+tests = ["simplejson", "pytest (>=6.0)", "pytest-asyncio", "pretend", "freezegun (>=0.2.8)", "coverage"]
+docs = ["twisted", "sphinxcontrib-mermaid", "sphinx-notfound-page", "sphinx", "furo"]
+dev = ["twisted", "sphinxcontrib-mermaid", "sphinx-notfound-page", "sphinx", "furo", "simplejson", "pytest (>=6.0)", "pytest-asyncio", "pretend", "freezegun (>=0.2.8)", "coverage", "tomli", "cogapp", "rich", "pre-commit"]
 
 [[package]]
 name = "testfixtures"
@@ -1073,7 +1074,7 @@ watchgod = {version = ">=0.6", optional = true, markers = "extra == \"standard\"
 websockets = {version = ">=10.0", optional = true, markers = "extra == \"standard\""}
 
 [package.extras]
-standard = ["websockets (>=10.0)", "httptools (>=0.4.0)", "watchgod (>=0.6)", "python-dotenv (>=0.13)", "PyYAML (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "colorama (>=0.4)"]
+standard = ["colorama (>=0.4)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "PyYAML (>=5.1)", "python-dotenv (>=0.13)", "watchgod (>=0.6)", "httptools (>=0.4.0)", "websockets (>=10.0)"]
 
 [[package]]
 name = "uvloop"
@@ -1103,8 +1104,8 @@ platformdirs = ">=2,<3"
 six = ">=1.9.0,<2"
 
 [package.extras]
-docs = ["proselint (>=0.10.2)", "sphinx (>=3)", "sphinx-argparse (>=0.2.5)", "sphinx-rtd-theme (>=0.4.3)", "towncrier (>=21.3)"]
-testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", "pytest (>=4)", "pytest-env (>=0.6.2)", "pytest-freezegun (>=0.4.1)", "pytest-mock (>=2)", "pytest-randomly (>=1)", "pytest-timeout (>=1)", "packaging (>=20.0)"]
+testing = ["packaging (>=20.0)", "pytest-timeout (>=1)", "pytest-randomly (>=1)", "pytest-mock (>=2)", "pytest-freezegun (>=0.4.1)", "pytest-env (>=0.6.2)", "pytest (>=4)", "flaky (>=3)", "coverage-enable-subprocess (>=1)", "coverage (>=4)"]
+docs = ["towncrier (>=21.3)", "sphinx-rtd-theme (>=0.4.3)", "sphinx-argparse (>=0.2.5)", "sphinx (>=3)", "proselint (>=0.10.2)"]
 
 [[package]]
 name = "watchgod"
@@ -1177,7 +1178,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "d8f72c2421706ca93ad23df3aad6a189cc5f680f7ce40ae2a47d317851795e17"
+content-hash = "2d669d148337093d6e7c38801b197a9423c6e6ca58a354ed9cc686439bbfbb7d"
 
 [metadata.files]
 anyio = [
@@ -1806,8 +1807,8 @@ stevedore = [
     {file = "stevedore-3.5.0.tar.gz", hash = "sha256:f40253887d8712eaa2bb0ea3830374416736dc8ec0e22f5a65092c1174c44335"},
 ]
 strawberry-graphql = [
-    {file = "strawberry-graphql-0.103.8.tar.gz", hash = "sha256:fadea95911c7853ae8ee06062f39e860a7aa0ca6296a81a679a5355cec6e85df"},
-    {file = "strawberry_graphql-0.103.8-py3-none-any.whl", hash = "sha256:2136bfbef5f215afb81b87e2f87d18dbdc2e2996829de76b60a868601f2ade09"},
+    {file = "strawberry-graphql-0.125.0.tar.gz", hash = "sha256:ffc570a79a9b09fa95eea4b59557cb792606ac3dcee7f6276e1e68d5a2e5400a"},
+    {file = "strawberry_graphql-0.125.0-py3-none-any.whl", hash = "sha256:c8d93ff00b257749f7d2a2f20da0210963256d52be9b8e6a7dbfb5c4a6e8580a"},
 ]
 structlog = [
     {file = "structlog-21.5.0-py3-none-any.whl", hash = "sha256:fd7922e195262b337da85c2a91c84be94ccab1f8fd1957bd6986f6904e3761c8"},
