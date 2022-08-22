@@ -12,7 +12,7 @@ structlog = "^21.5.0"
 colorama = "^0.4.4"
 environs = "^9.5.0"
 beanie = "^1.10.1"
-strawberry-graphql = "^0.103.8"
+strawberry-graphql = "^0.126.1"
 redis = "^4.1.4"
 
 [tool.poetry.dev-dependencies]
